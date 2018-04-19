@@ -1,7 +1,10 @@
-package models
+package coleta
 
 import (
 	"sync"
+
+	"git.resultys.com.br/prospecta/models/email"
+	"git.resultys.com.br/prospecta/models/telefone"
 )
 
 var telefoneMutex *sync.Mutex
@@ -19,12 +22,12 @@ func init() {
 
 // Coleta dados
 type Coleta struct {
-	Emails    []Email
-	Telefones []Telefone
+	Emails    []email.Email
+	Telefones []telefone.Telefone
 }
 
 // PopuleEmails popula coletor com emails
-func (c *Coleta) PopuleEmails(emails []Email) {
+func (c *Coleta) PopuleEmails(emails []email.Email) {
 	emailMutex.Lock()
 
 	for i := 0; i < len(emails); i++ {
@@ -35,7 +38,7 @@ func (c *Coleta) PopuleEmails(emails []Email) {
 }
 
 // PopuleTelefones popule coletor com telefones
-func (c *Coleta) PopuleTelefones(telefones []Telefone) {
+func (c *Coleta) PopuleTelefones(telefones []telefone.Telefone) {
 	telefoneMutex.Lock()
 
 	for i := 0; i < len(telefones); i++ {

@@ -1,4 +1,4 @@
-package models
+package email
 
 // Email dados
 type Email struct {

@@ -1,4 +1,4 @@
-package models
+package token
 
 // Token dados
 type Token struct {
