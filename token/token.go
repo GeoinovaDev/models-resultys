@@ -7,4 +7,5 @@ type Token struct {
 	Fantasia string
 	Cidade   string
 	Estado   string
+	Webhook  string
 }
