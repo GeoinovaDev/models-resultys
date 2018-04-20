@@ -3,7 +3,7 @@ package telefone
 import (
 	"strings"
 
-	"git.resultys.com.br/prospecta/models/telefone/tipo"
+	"git.resultys.com.br/motor/models/telefone/tipo"
 )
 
 // Telefone dados

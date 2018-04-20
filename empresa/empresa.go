@@ -1,9 +1,11 @@
 package empresa
 
 import (
-	"git.resultys.com.br/prospecta/models/email"
-	"git.resultys.com.br/prospecta/models/socio"
-	"git.resultys.com.br/prospecta/models/telefone"
+	"strings"
+
+	"git.resultys.com.br/motor/models/email"
+	"git.resultys.com.br/motor/models/socio"
+	"git.resultys.com.br/motor/models/telefone"
 )
 
 // Empresa dados
