@@ -4,6 +4,7 @@ import (
 	"sync"
 
 	"git.resultys.com.br/motor/models/email"
+	"git.resultys.com.br/motor/models/empresa"
 	"git.resultys.com.br/motor/models/facebook"
 	"git.resultys.com.br/motor/models/linkedin"
 	"git.resultys.com.br/motor/models/site"
@@ -13,6 +14,8 @@ import (
 
 // Coleta dados
 type Coleta struct {
+	Empresa *empresa.Empresa
+
 	Emails    []*email.Email
 	Telefones []*telefone.Telefone
 	Facebooks []*facebook.Facebook

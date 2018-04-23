@@ -1,8 +1,6 @@
 package empresa
 
 import (
-	"strings"
-
 	"git.resultys.com.br/motor/models/email"
 	"git.resultys.com.br/motor/models/socio"
 	"git.resultys.com.br/motor/models/telefone"
