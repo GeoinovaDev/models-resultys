@@ -18,7 +18,7 @@ type Coleta struct {
 
 	Emails    []*email.Email
 	Telefones []*telefone.Telefone
-	Facebooks []*facebook.Facebook
+	Facebooks []*facebook.Page
 	Linkedins []*linkedin.Linkedin
 	Twitters  []*twitter.Twitter
 	Sites     []*site.Site
@@ -32,7 +32,7 @@ type Coleta struct {
 }
 
 // PopuleFacebook facebook
-func (c *Coleta) PopuleFacebook(facebooks []*facebook.Facebook) {
+func (c *Coleta) PopuleFacebook(facebooks []*facebook.Page) {
 	c.facebookMutex.Lock()
 
 	for i := 0; i < len(facebooks); i++ {
