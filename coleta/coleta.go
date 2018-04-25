@@ -14,14 +14,15 @@ import (
 
 // Coleta dados
 type Coleta struct {
-	Empresa empresa.Empresa
+	ID      string          `json:"id" bson:"id"`
+	Empresa empresa.Empresa `json:"empresa" bson:"empresa"`
 
-	Emails    []*email.Email
-	Telefones []*telefone.Telefone
-	Facebooks []*facebook.Page
-	Linkedins []*linkedin.Linkedin
-	Twitters  []*twitter.Twitter
-	Sites     []*site.Site
+	Emails    []*email.Email       `json:"emails" bson:"emails"`
+	Telefones []*telefone.Telefone `json:"telefones" bson:"telefones"`
+	Facebooks []*facebook.Page     `json:"facebooks" bson:"facebooks"`
+	Linkedins []*linkedin.Linkedin `json:"linkedins" bson:"linkedins"`
+	Twitters  []*twitter.Twitter   `json:"twitters" bson:"twitters"`
+	Sites     []*site.Site         `json:"sites" bson:"sites"`
 
 	emailMutex    sync.Mutex
 	telefoneMutex sync.Mutex

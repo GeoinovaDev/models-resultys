@@ -1,15 +1,21 @@
 package token
 
-import "strings"
+import (
+	"strings"
+
+	"gopkg.in/mgo.v2/bson"
+)
 
 // Token dados
 type Token struct {
-	CNPJ     string
-	Nome     string
-	Fantasia string
-	Cidade   string
-	Estado   string
-	Webhook  string
+	TokenID  bson.ObjectId `json:"token_id" bson:"_id,omitempty"`
+	ID       string        `json:"id" bson:"id"`
+	CNPJ     string        `json:"cnpj" bson:"cnpj"`
+	Nome     string        `json:"nome" bson:"nome"`
+	Fantasia string        `json:"fantasia" bson:"fantasia"`
+	Cidade   string        `json:"cidade" bson:"cidade"`
+	Estado   string        `json:"estado" bson:"estado"`
+	Webhook  string        `json:"webhook" bson:"webhook"`
 }
 
 // GetNome retorna nome da empresa
