@@ -7,7 +7,7 @@ import (
 )
 
 // Insert instance
-func Insert(instance *Instance) *Instance {
+func (instance *Instance) Insert() *Instance {
 	mongo.New().DB("compute").C("instances").Query(func(c *mgo.Collection) {
 		err := c.Insert(instance)
 		if err != nil {

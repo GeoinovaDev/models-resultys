@@ -6,7 +6,7 @@ import (
 )
 
 // Insert insere snovio model
-func Insert(snovio *Snovio) *Snovio {
+func (snovio *Snovio) Insert() *Snovio {
 	mongo.New().DB("vendor").C("snovio").Query(func(c *mgo.Collection) {
 		err := c.Insert(snovio)
 		if err != nil {

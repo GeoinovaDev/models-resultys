@@ -6,6 +6,12 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// RUNNING
+const (
+	RUNNING = 1
+	DONE    = 2
+)
+
 // Token dados
 type Token struct {
 	TokenID  bson.ObjectId `json:"token_id" bson:"_id,omitempty"`
@@ -16,6 +22,7 @@ type Token struct {
 	Cidade   string        `json:"cidade" bson:"cidade"`
 	Estado   string        `json:"estado" bson:"estado"`
 	Webhook  string        `json:"webhook" bson:"webhook"`
+	Status   int           `json:"status" bson:"status"`
 }
 
 // GetNome retorna nome da empresa

@@ -7,7 +7,7 @@ import (
 )
 
 // Insert coleta
-func Insert(coleta *Coleta) *Coleta {
+func (coleta *Coleta) Insert() *Coleta {
 	mongo.New().DB("coletor").C("coleta").Query(func(c *mgo.Collection) {
 		err := c.Insert(coleta)
 		if err != nil {
