@@ -14,7 +14,7 @@ import (
 
 // Coleta dados
 type Coleta struct {
-	Empresa *empresa.Empresa
+	Empresa empresa.Empresa
 
 	Emails    []*email.Email
 	Telefones []*telefone.Telefone
@@ -23,12 +23,12 @@ type Coleta struct {
 	Twitters  []*twitter.Twitter
 	Sites     []*site.Site
 
-	emailMutex    *sync.Mutex
-	telefoneMutex *sync.Mutex
-	facebookMutex *sync.Mutex
-	linkedinMutex *sync.Mutex
-	twitterMutex  *sync.Mutex
-	siteMutex     *sync.Mutex
+	emailMutex    sync.Mutex
+	telefoneMutex sync.Mutex
+	facebookMutex sync.Mutex
+	linkedinMutex sync.Mutex
+	twitterMutex  sync.Mutex
+	siteMutex     sync.Mutex
 }
 
 // PopuleFacebook facebook
