@@ -2,6 +2,7 @@ package token
 
 import (
 	"strings"
+	"sync"
 
 	"gopkg.in/mgo.v2/bson"
 )
@@ -23,6 +24,26 @@ type Token struct {
 	Estado   string        `json:"estado" bson:"estado"`
 	Webhook  string        `json:"webhook" bson:"webhook"`
 	Status   int           `json:"status" bson:"status"`
+	Trigger  bool          `json:"trigger" bson:"trigger"`
+
+	mutex *sync.Mutex
+}
+
+// New cria o token
+func New() *Token {
+	return &Token{
+		mutex: &sync.Mutex{},
+	}
+}
+
+// Lock trava o token
+func (e *Token) Lock() {
+	e.mutex.Lock()
+}
+
+// Unlock destrava o token
+func (e *Token) Unlock() {
+	e.mutex.Unlock()
 }
 
 // GetNome retorna nome da empresa
