@@ -20,13 +20,13 @@ func (token *Token) Insert() *Token {
 	return token
 }
 
-// Fetch busca token pelo id
+// FetchByTokenID busca token pelo tokenid
 // Return *token
-func Fetch(id string) *Token {
+func FetchByTokenID(id bson.ObjectId) *Token {
 	token := &Token{}
 
 	mongo.New().DB("coletor").C("token").Query(func(c *mgo.Collection) {
-		err := c.Find(bson.M{"id": id}).One(token)
+		err := c.Find(bson.M{"_id": id}).One(token)
 		if err != nil {
 			panic(err)
 		}
