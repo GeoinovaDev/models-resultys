@@ -29,6 +29,8 @@ type Token struct {
 	mutex *sync.Mutex
 }
 
+// forca commit
+
 // New cria o token
 func New() *Token {
 	return &Token{
