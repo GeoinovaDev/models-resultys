@@ -16,6 +16,11 @@ type Telefone struct {
 	Tipo     int    `json:"tipo"`
 }
 
+// Raw retorna somente o numero do telefone completo
+func (telefone *Telefone) Raw() string {
+	return telefone.Pais + telefone.DDD + telefone.Numero
+}
+
 // New Cria telefone a partir do numero
 // Return Telefone
 func New(numero string) Telefone {
@@ -26,7 +31,7 @@ func New(numero string) Telefone {
 	// TELEFONE LOCAL
 	if strings.Index(numero, "4003") == 0 {
 		telefone.Tipo = tipo.LOCAL
-		telefone.Pais = ""
+		telefone.Pais = "55"
 		telefone.DDD = ""
 		telefone.Numero = numero
 
@@ -36,7 +41,7 @@ func New(numero string) Telefone {
 	// TELEFONE LOCAL
 	if strings.Index(numero, "4004") == 0 {
 		telefone.Tipo = tipo.LOCAL
-		telefone.Pais = ""
+		telefone.Pais = "55"
 		telefone.DDD = ""
 		telefone.Numero = numero
 
@@ -46,7 +51,7 @@ func New(numero string) Telefone {
 	// TELEFONE GRATUITO
 	if strings.Index(numero, "0800") == 0 {
 		telefone.Tipo = tipo.GRATUITO
-		telefone.Pais = ""
+		telefone.Pais = "55"
 		telefone.DDD = ""
 		telefone.Numero = numero
 
@@ -66,7 +71,7 @@ func New(numero string) Telefone {
 	// CELULAR COM DDD
 	if len(numero) == 11 {
 		telefone.Tipo = tipo.CELULAR
-		telefone.Pais = ""
+		telefone.Pais = "55"
 		telefone.DDD = numero[:2]
 		telefone.Numero = numero[2:]
 
@@ -83,14 +88,33 @@ func New(numero string) Telefone {
 		return telefone
 	}
 
-	// FIXO COM DDD
 	if len(numero) == 10 {
+
+		// CELULAR ANTIGO COM DDD
+		if string(numero[2]) == "9" || string(numero[2]) == "8" {
+			telefone.Tipo = tipo.CELULAR
+			telefone.Pais = "55"
+			telefone.DDD = numero[:2]
+			telefone.Numero = "9" + numero[2:]
+
+			return telefone
+		}
+
+		// FIXO COM DDD
 		telefone.Tipo = tipo.FIXO
-		telefone.Pais = ""
+		telefone.Pais = "55"
 		telefone.DDD = numero[:2]
 		telefone.Numero = numero[2:]
 
 		return telefone
+	}
+
+	// FIXO ANTIGO COM DDD
+	if len(numero) == 9 {
+		telefone.Tipo = tipo.FIXO
+		telefone.Pais = "55"
+		telefone.DDD = numero[:2]
+		telefone.Numero = "3" + numero[2:]
 	}
 
 	return telefone

@@ -19,10 +19,11 @@ type Coleta struct {
 
 	Emails    []*email.Email       `json:"emails" bson:"emails"`
 	Telefones []*telefone.Telefone `json:"telefones" bson:"telefones"`
+	Sites     []*site.Site         `json:"sites" bson:"sites"`
+
 	Facebooks []*facebook.Page     `json:"facebooks" bson:"facebooks"`
 	Linkedins []*linkedin.Linkedin `json:"linkedins" bson:"linkedins"`
 	Twitters  []*twitter.Twitter   `json:"twitters" bson:"twitters"`
-	Sites     []*site.Site         `json:"sites" bson:"sites"`
 
 	emailMutex    sync.Mutex
 	telefoneMutex sync.Mutex
