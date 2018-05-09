@@ -23,6 +23,7 @@ type Token struct {
 	Fantasia    string              `json:"fantasia" bson:"fantasia"`
 	Cidade      string              `json:"cidade" bson:"cidade"`
 	Estado      string              `json:"estado" bson:"estado"`
+	CEP         string              `json:"cep" bson:"cep"`
 	Webhook     string              `json:"webhook" bson:"webhook"`
 	Status      int                 `json:"status" bson:"status"`
 	Trigger     bool                `json:"trigger" bson:"trigger"`
