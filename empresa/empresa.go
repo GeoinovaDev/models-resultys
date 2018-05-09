@@ -45,10 +45,11 @@ func GetNome(razaoSocial string, fantasia string) string {
 		nome = razaoSocial
 	}
 
-	return clearNome(nome)
+	return ClearNome(nome)
 }
 
-func clearNome(nome string) string {
+// ClearNome ...
+func ClearNome(nome string) string {
 	nome = strings.Replace(nome, ".", "", -1)
 	nome = strings.Replace(nome, "- ME", "", -1)
 	nome = strings.Replace(nome, "LTDA", "", -1)

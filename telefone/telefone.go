@@ -125,6 +125,8 @@ func clear(numero string) string {
 	numero = strings.Replace(numero, "/", "", -1)
 	numero = strings.Replace(numero, ")", "", -1)
 	numero = strings.Replace(numero, "(", "", -1)
+	numero = strings.Replace(numero, "+", "", -1)
+	numero = strings.Replace(numero, " ", "", -1)
 
 	return strings.Trim(numero, " ")
 }
