@@ -31,3 +31,17 @@ func FetchByAlloc(alloc string) (all []Instance) {
 
 	return
 }
+
+// FetchAll ...
+func FetchAll() []Instance {
+	all := []Instance{}
+
+	mongo.New().DB("compute").C("instances").Query(func(c *mgo.Collection) {
+		err := c.Find(nil).All(&all)
+		if err != nil {
+			panic(err)
+		}
+	})
+
+	return all
+}
