@@ -26,12 +26,12 @@ type Coleta struct {
 	Linkedins []*linkedin.Linkedin `json:"linkedins" bson:"linkedins"`
 	Twitters  []*twitter.Twitter   `json:"twitters" bson:"twitters"`
 
-	emailMutex    sync.Mutex
-	telefoneMutex sync.Mutex
-	facebookMutex sync.Mutex
-	linkedinMutex sync.Mutex
-	twitterMutex  sync.Mutex
-	siteMutex     sync.Mutex
+	emailMutex    *sync.Mutex
+	telefoneMutex *sync.Mutex
+	facebookMutex *sync.Mutex
+	linkedinMutex *sync.Mutex
+	twitterMutex  *sync.Mutex
+	siteMutex     *sync.Mutex
 }
 
 // New ...
@@ -44,6 +44,13 @@ func New() *Coleta {
 		Facebooks: []*facebook.Page{},
 		Linkedins: []*linkedin.Linkedin{},
 		Twitters:  []*twitter.Twitter{},
+
+		emailMutex:    &sync.Mutex{},
+		telefoneMutex: &sync.Mutex{},
+		facebookMutex: &sync.Mutex{},
+		linkedinMutex: &sync.Mutex{},
+		twitterMutex:  &sync.Mutex{},
+		siteMutex:     &sync.Mutex{},
 	}
 }
 
