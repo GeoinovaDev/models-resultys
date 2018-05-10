@@ -8,6 +8,7 @@ import (
 	"git.resultys.com.br/motor/models/facebook"
 	"git.resultys.com.br/motor/models/linkedin"
 	"git.resultys.com.br/motor/models/site"
+	"git.resultys.com.br/motor/models/site/fonte"
 	"git.resultys.com.br/motor/models/telefone"
 	"git.resultys.com.br/motor/models/twitter"
 )
@@ -31,6 +32,38 @@ type Coleta struct {
 	linkedinMutex sync.Mutex
 	twitterMutex  sync.Mutex
 	siteMutex     sync.Mutex
+}
+
+// New ...
+func New() *Coleta {
+	return &Coleta{
+		Empresa:   empresa.Empresa{},
+		Emails:    []*email.Email{},
+		Telefones: []*telefone.Telefone{},
+		Sites:     []*site.Site{},
+		Facebooks: []*facebook.Page{},
+		Linkedins: []*linkedin.Linkedin{},
+		Twitters:  []*twitter.Twitter{},
+	}
+}
+
+// GetTelefones ...
+func (c *Coleta) GetTelefones() []telefone.Telefone {
+	telefones := []telefone.Telefone{}
+
+	for i := 0; i < len(c.Telefones); i++ {
+		telefones = append(telefones, *c.Telefones[i])
+	}
+
+	for i := 0; i < len(c.Facebooks); i++ {
+		for j := 0; j < len(c.Facebooks[i].Telefones); j++ {
+			tel := telefone.New(c.Facebooks[i].Telefones[j])
+			tel.Fonte = fonte.FACEBOOK
+			telefones = append(telefones, tel)
+		}
+	}
+
+	return telefones
 }
 
 // PopuleFacebook facebook

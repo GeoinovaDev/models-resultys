@@ -7,4 +7,8 @@ const (
 	GUIAMAIS  = 2
 	TELELISTA = 3
 	GOOGLE    = 4
+
+	FACEBOOK = 5
+	LINKEDIN = 6
+	TWITTER  = 7
 )
