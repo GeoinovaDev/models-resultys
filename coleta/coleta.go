@@ -6,7 +6,6 @@ import (
 	"sync"
 
 	"git.resultys.com.br/motor/models/email"
-	"git.resultys.com.br/motor/models/empresa"
 	"git.resultys.com.br/motor/models/facebook"
 	"git.resultys.com.br/motor/models/linkedin"
 	"git.resultys.com.br/motor/models/site"
@@ -17,8 +16,7 @@ import (
 
 // Coleta dados
 type Coleta struct {
-	ID      string          `json:"id" bson:"id"`
-	Empresa empresa.Empresa `json:"empresa" bson:"empresa"`
+	ID string `json:"id" bson:"id"`
 
 	Emails    []*email.Email       `json:"emails" bson:"emails"`
 	Telefones []*telefone.Telefone `json:"telefones" bson:"telefones"`
@@ -39,7 +37,6 @@ type Coleta struct {
 // New ...
 func New() *Coleta {
 	return &Coleta{
-		Empresa:   empresa.Empresa{},
 		Emails:    []*email.Email{},
 		Telefones: []*telefone.Telefone{},
 		Sites:     []*site.Site{},
@@ -154,13 +151,6 @@ func popule(mutex *sync.Mutex, arr []interface{}, dados []interface{}) {
 // GetDomains ...
 func (c *Coleta) GetDomains() []string {
 	domains := []string{}
-
-	for i := 0; i < len(c.Empresa.Emails); i++ {
-		url := extractDomainFromEmail(c.Empresa.Emails[i].Email)
-		if len(url) > 0 {
-			domains = append(domains, url)
-		}
-	}
 
 	for i := 0; i < len(c.Emails); i++ {
 		url := extractDomainFromEmail(c.Emails[i].Email)
