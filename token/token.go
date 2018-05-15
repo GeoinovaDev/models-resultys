@@ -28,6 +28,7 @@ type Token struct {
 	Status      int                 `json:"status" bson:"status"`
 	Trigger     bool                `json:"trigger" bson:"trigger"`
 	Telefones   []telefone.Telefone `json:"telefones" bson:"telefones"`
+	Domains     []string            `json:"domains" bson:"domains"`
 
 	mutex *sync.Mutex
 }
