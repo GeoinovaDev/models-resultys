@@ -31,6 +31,7 @@ type Empresa struct {
 	SituacaoEspecial     string              `json:"situacao_especial"`
 	DataSituacaoEspecial string              `json:"data_situacao_especial"`
 	CapitalSocial        string              `json:capital_social""`
+	IsUpdated            bool                `json:"is_updated"`
 
 	AtividadesPrincipais  []Atividade   `json: "atividades_principais"`
 	AtividadesSecundarias []Atividade   `json: "atividades_secundarias"`
