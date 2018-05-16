@@ -3,6 +3,7 @@ package telefone
 import (
 	"strings"
 
+	"git.resultys.com.br/lib/lower/str"
 	"git.resultys.com.br/motor/models/telefone/tipo"
 )
 
@@ -16,9 +17,37 @@ type Telefone struct {
 	Tipo     int    `json:"tipo"`
 }
 
+// Format ...
+func (telefone Telefone) Format() string {
+	formatted := ""
+
+	if telefone.Tipo == tipo.LOCAL {
+		formatted = telefone.Raw()
+	}
+
+	if telefone.Tipo == tipo.GRATUITO {
+		formatted = telefone.Raw()
+	}
+
+	if telefone.Tipo == tipo.FIXO {
+		formatted = str.Format("({0}) {1}-{2}", telefone.DDD, telefone.Numero[:4], telefone.Numero[4:])
+	}
+
+	if telefone.Tipo == tipo.CELULAR {
+		formatted = str.Format("({0}) {1}-{2}", telefone.DDD, telefone.Numero[:5], telefone.Numero[5:])
+	}
+
+	return formatted
+}
+
 // Raw retorna somente o numero do telefone completo
 func (telefone *Telefone) Raw() string {
 	return telefone.Pais + telefone.DDD + telefone.Numero
+}
+
+// RawSemDDI ...
+func (telefone *Telefone) RawSemDDI() string {
+	return telefone.DDD + telefone.Numero
 }
 
 // New Cria telefone a partir do numero
