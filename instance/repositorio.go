@@ -18,6 +18,20 @@ func (instance *Instance) Insert() *Instance {
 	return instance
 }
 
+// FetchOne ...
+func FetchOne(alloc string) Instance {
+	instance := Instance{}
+
+	mongo.New().DB("compute").C("instances").Query(func(c *mgo.Collection) {
+		err := c.Find(bson.M{"alloc": alloc}).One(&instance)
+		if err != nil {
+			panic(err)
+		}
+	})
+
+	return instance
+}
+
 // FetchByAlloc busca instancias pelo tipo alloc
 func FetchByAlloc(alloc string) (all []Instance) {
 	all = []Instance{}
