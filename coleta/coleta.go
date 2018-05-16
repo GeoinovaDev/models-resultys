@@ -75,77 +75,72 @@ func (c *Coleta) GetTelefones() []telefone.Telefone {
 // PopuleFacebook facebook
 func (c *Coleta) PopuleFacebook(facebooks []*facebook.Page) {
 	c.facebookMutex.Lock()
+	defer c.facebookMutex.Unlock()
 
 	for i := 0; i < len(facebooks); i++ {
 		c.Facebooks = append(c.Facebooks, facebooks[i])
 	}
-
-	c.facebookMutex.Unlock()
 }
 
 // PopuleEmail popula coletor com emails
 func (c *Coleta) PopuleEmail(emails []*email.Email) {
 	c.emailMutex.Lock()
+	defer c.emailMutex.Unlock()
 
 	for i := 0; i < len(emails); i++ {
 		c.Emails = append(c.Emails, emails[i])
 	}
-
-	c.emailMutex.Unlock()
 }
 
 // PopuleTelefone popule coletor com telefones
 func (c *Coleta) PopuleTelefone(telefones []*telefone.Telefone) {
 	c.telefoneMutex.Lock()
+	defer c.telefoneMutex.Unlock()
 
 	for i := 0; i < len(telefones); i++ {
 		c.Telefones = append(c.Telefones, telefones[i])
 	}
 
-	c.telefoneMutex.Unlock()
 }
 
 // PopuleSite popule coletor com telefones
 func (c *Coleta) PopuleSite(sites []*site.Site) {
 	c.siteMutex.Lock()
+	defer c.siteMutex.Unlock()
 
 	for i := 0; i < len(sites); i++ {
 		c.Sites = append(c.Sites, sites[i])
 	}
-
-	c.siteMutex.Unlock()
 }
 
 // PopuleLinkedin popule coletor com telefones
 func (c *Coleta) PopuleLinkedin(linkedins []*linkedin.Linkedin) {
 	c.linkedinMutex.Lock()
+	defer c.linkedinMutex.Unlock()
 
 	for i := 0; i < len(linkedins); i++ {
 		c.Linkedins = append(c.Linkedins, linkedins[i])
 	}
 
-	c.linkedinMutex.Unlock()
 }
 
 // PopuleTwitter popule coletor com telefones
 func (c *Coleta) PopuleTwitter(twitters []*twitter.Twitter) {
 	c.twitterMutex.Lock()
+	defer c.twitterMutex.Unlock()
 
 	for i := 0; i < len(twitters); i++ {
 		c.Twitters = append(c.Twitters, twitters[i])
 	}
-
-	c.twitterMutex.Unlock()
 }
 
 func popule(mutex *sync.Mutex, arr []interface{}, dados []interface{}) {
 	mutex.Lock()
+	defer mutex.Unlock()
 
 	for i := 0; i < len(dados); i++ {
 		arr = append(arr, dados[i])
 	}
-
-	mutex.Unlock()
 }
 
 // GetDomains ...
