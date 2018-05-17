@@ -26,7 +26,7 @@ type Coleta struct {
 	Facebooks []*facebook.Page     `json:"facebooks" bson:"facebooks"`
 	Linkedins []*linkedin.Linkedin `json:"linkedins" bson:"linkedins"`
 	Twitters  []*twitter.Twitter   `json:"twitters" bson:"twitters"`
-	Company   *gplaces.Company     `json:"company" bson:"company"`
+	GPlaces   *gplaces.Company     `json:"gplaces" bson:"gplaces"`
 
 	emailMutex    *sync.Mutex
 	telefoneMutex *sync.Mutex
@@ -45,7 +45,7 @@ func New() *Coleta {
 		Facebooks: []*facebook.Page{},
 		Linkedins: []*linkedin.Linkedin{},
 		Twitters:  []*twitter.Twitter{},
-		Company:   &gplaces.Company{},
+		GPlaces:   &gplaces.Company{},
 
 		emailMutex:    &sync.Mutex{},
 		telefoneMutex: &sync.Mutex{},
