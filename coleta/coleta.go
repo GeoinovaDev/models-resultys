@@ -72,6 +72,10 @@ func (c *Coleta) GetTelefones() []telefone.Telefone {
 		}
 	}
 
+	if len(c.GPlaces.GlobalPhoneNumber) > 0 {
+		telefones = append(telefones, telefone.New(c.GPlaces.GlobalPhoneNumber))
+	}
+
 	return telefones
 }
 
