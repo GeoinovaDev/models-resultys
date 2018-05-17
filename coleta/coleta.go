@@ -7,6 +7,7 @@ import (
 
 	"git.resultys.com.br/motor/models/email"
 	"git.resultys.com.br/motor/models/facebook"
+	"git.resultys.com.br/motor/models/gplaces"
 	"git.resultys.com.br/motor/models/linkedin"
 	"git.resultys.com.br/motor/models/site"
 	"git.resultys.com.br/motor/models/site/fonte"
@@ -25,6 +26,7 @@ type Coleta struct {
 	Facebooks []*facebook.Page     `json:"facebooks" bson:"facebooks"`
 	Linkedins []*linkedin.Linkedin `json:"linkedins" bson:"linkedins"`
 	Twitters  []*twitter.Twitter   `json:"twitters" bson:"twitters"`
+	Company   *gplaces.Company     `json:"company" bson:"company"`
 
 	emailMutex    *sync.Mutex
 	telefoneMutex *sync.Mutex
@@ -43,6 +45,7 @@ func New() *Coleta {
 		Facebooks: []*facebook.Page{},
 		Linkedins: []*linkedin.Linkedin{},
 		Twitters:  []*twitter.Twitter{},
+		Company:   &gplaces.Company{},
 
 		emailMutex:    &sync.Mutex{},
 		telefoneMutex: &sync.Mutex{},
