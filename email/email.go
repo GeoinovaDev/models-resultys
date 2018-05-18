@@ -6,10 +6,16 @@ import (
 
 // Email dados
 type Email struct {
-	Email    string `json:"email"`
-	CreateAt string `json:"create_at"`
-	Status   string `json:"status"`
-	Fonte    int    `json:"fonte"`
+	Email    string `json:"email" bson:"email"`
+	CreateAt string `json:"create_at" bson:"create_at"`
+	Status   string `json:"status" bson:"status"`
+	Fonte    int    `json:"fonte" bson:"fonte"`
+	Ranking  int    `json:"ranking" bson:"ranking"`
+}
+
+// Raw ...
+func (e Email) Raw() string {
+	return e.Email
 }
 
 // IsOwner checa se o email eh de dominio privado

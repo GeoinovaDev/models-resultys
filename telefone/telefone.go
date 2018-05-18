@@ -9,12 +9,13 @@ import (
 
 // Telefone dados
 type Telefone struct {
-	Numero   string `json:"numero"`
-	Pais     string `json:"pais"`
-	DDD      string `json:"ddd"`
-	CreateAt string `json:"create_at"`
-	Fonte    int    `json:"fonte"`
-	Tipo     int    `json:"tipo"`
+	Numero   string `json:"numero" bson:"numero"`
+	Pais     string `json:"pais" bson:"pais"`
+	DDD      string `json:"ddd" bson:"ddd"`
+	CreateAt string `json:"create_at" bson:"create_at"`
+	Fonte    int    `json:"fonte" bson:"fonte"`
+	Tipo     int    `json:"tipo" bson:"tipo"`
+	Ranking  int    `json:"ranking" bson:"ranking"`
 }
 
 // Format ...
@@ -41,12 +42,24 @@ func (telefone Telefone) Format() string {
 }
 
 // Raw retorna somente o numero do telefone completo
-func (telefone *Telefone) Raw() string {
+func (telefone Telefone) Raw() string {
 	return telefone.Pais + telefone.DDD + telefone.Numero
 }
 
+// ReFormat ...
+func (telefone Telefone) ReFormat() Telefone {
+	t := New(telefone.Raw())
+
+	t.Fonte = telefone.Fonte
+	t.Tipo = telefone.Tipo
+	t.CreateAt = telefone.CreateAt
+	t.Ranking = telefone.Ranking
+
+	return t
+}
+
 // RawSemDDI ...
-func (telefone *Telefone) RawSemDDI() string {
+func (telefone Telefone) RawSemDDI() string {
 	return telefone.DDD + telefone.Numero
 }
 
@@ -55,7 +68,7 @@ func (telefone *Telefone) RawSemDDI() string {
 func New(numero string) Telefone {
 	telefone := Telefone{}
 
-	numero = clear(numero)
+	numero = Clear(numero)
 
 	// TELEFONE LOCAL
 	if strings.Index(numero, "4003") == 0 {
@@ -149,7 +162,8 @@ func New(numero string) Telefone {
 	return telefone
 }
 
-func clear(numero string) string {
+// Clear ...
+func Clear(numero string) string {
 	numero = strings.Replace(numero, "-", "", -1)
 	numero = strings.Replace(numero, "/", "", -1)
 	numero = strings.Replace(numero, ")", "", -1)
