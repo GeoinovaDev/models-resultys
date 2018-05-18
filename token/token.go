@@ -29,34 +29,16 @@ type Token struct {
 	Trigger     bool                `json:"trigger" bson:"trigger"`
 	Telefones   []telefone.Telefone `json:"telefones" bson:"telefones"`
 	Domains     []string            `json:"domains" bson:"domains"`
-	Params      map[string]string   `json:"params" bson:"params"`
+	Params      interface{}         `json:"params" bson:"params"`
 
 	mutex *sync.Mutex
 }
 
-// forca commit
-
 // New cria o token
 func New() *Token {
 	return &Token{
-		mutex:  &sync.Mutex{},
-		Params: map[string]string{},
+		mutex: &sync.Mutex{},
 	}
-}
-
-// AddParam ...
-func (e *Token) AddParam(param string, value string) *Token {
-	e.Params[param] = value
-	return e
-}
-
-// GetParam ...
-func (e *Token) GetParam(param string) string {
-	if val, ok := e.Params[param]; ok {
-		return val
-	}
-
-	return ""
 }
 
 // Lock trava o token

@@ -39,6 +39,17 @@ type Empresa struct {
 	Socios                []socio.Socio `json:"socios"`
 }
 
+// New ...
+func New() *Empresa {
+	return &Empresa{
+		Emails:                []email.Email{},
+		Telefones:             []telefone.Telefone{},
+		AtividadesPrincipais:  []Atividade{},
+		AtividadesSecundarias: []Atividade{},
+		Socios:                []socio.Socio{},
+	}
+}
+
 // GetNome retorna nome da empresa
 // Return string
 func GetNome(razaoSocial string, fantasia string) string {

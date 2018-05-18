@@ -19,8 +19,8 @@ type Classify struct {
 }
 
 // New ...
-func New() Classify {
-	return Classify{}
+func New() *Classify {
+	return &Classify{}
 }
 
 // ExistTelefoneConfirmado ...
