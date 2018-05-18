@@ -1,14 +1,15 @@
 package classify
 
 import (
+	"git.resultys.com.br/motor/models/empresa"
 	"gopkg.in/mgo.v2/bson"
 )
 
 // Classify struct
 type Classify struct {
-	ClassifyID bson.ObjectId `json:"classify_id" bson:"_id,omitempty"`
-	ID         string        `bson:"id"`
-	// Empresa    *empresa.Basic `json:"empresa" bson:"empresa"`
+	ClassifyID bson.ObjectId  `json:"classify_id" bson:"_id,omitempty"`
+	ID         string         `bson:"id"`
+	Empresa    *empresa.Basic `json:"empresa" bson:"empresa"`
 
 	Pertence    []string `json:"pertence" bson:"pertence"`
 	NaoPertence []string `json:"nao_pertence" bson:"nao_pertence"`

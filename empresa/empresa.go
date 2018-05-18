@@ -30,13 +30,13 @@ type Empresa struct {
 	MotivoSituacao       string              `json:"motivo_situacao"`
 	SituacaoEspecial     string              `json:"situacao_especial"`
 	DataSituacaoEspecial string              `json:"data_situacao_especial"`
-	CapitalSocial        string              `json:capital_social""`
+	CapitalSocial        string              `json:"capital_social"`
 	IsUpdated            bool                `json:"is_updated"`
 	DataAtualizacao      string              `json:"ultima_atualizacao"`
 
-	AtividadesPrincipais  []Atividade   `json: "atividades_principais"`
-	AtividadesSecundarias []Atividade   `json: "atividades_secundarias"`
-	Socios                []socio.Socio `json: "socios"`
+	AtividadesPrincipais  []Atividade   `json:"atividades_principais"`
+	AtividadesSecundarias []Atividade   `json:"atividades_secundarias"`
+	Socios                []socio.Socio `json:"socios"`
 }
 
 // GetNome retorna nome da empresa
