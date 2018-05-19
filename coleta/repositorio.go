@@ -18,6 +18,16 @@ func (coleta *Coleta) Insert() *Coleta {
 	return coleta
 }
 
+// Remove ...
+func (coleta *Coleta) Remove() {
+	mongo.New().DB("coletor").C("coleta").Query(func(c *mgo.Collection) {
+		err := c.Remove(bson.M{"id": coleta.ID})
+		if err != nil {
+			panic(err)
+		}
+	})
+}
+
 // Fetch busca coleta por id
 func Fetch(id string) (coleta *Coleta) {
 	coleta = &Coleta{}
