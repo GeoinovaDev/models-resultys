@@ -16,6 +16,7 @@ type Telefone struct {
 	Fonte    int    `json:"fonte" bson:"fonte"`
 	Tipo     int    `json:"tipo" bson:"tipo"`
 	Ranking  int    `json:"ranking" bson:"ranking"`
+	Repeat   int    `json:"repeat" bson:"repeat"`
 }
 
 // Format ...

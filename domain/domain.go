@@ -9,6 +9,7 @@ import (
 type Domain struct {
 	URL     string `json:"url" bson:"url"`
 	Ranking int    `json:"ranking" bson:"ranking"`
+	Repeat  int    `json:"repeat" bson:"repeat"`
 }
 
 // Raw ...

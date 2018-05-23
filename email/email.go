@@ -11,6 +11,7 @@ type Email struct {
 	Status   string `json:"status" bson:"status"`
 	Fonte    int    `json:"fonte" bson:"fonte"`
 	Ranking  int    `json:"ranking" bson:"ranking"`
+	Repeat   int    `json:"repeat" bson:"repeat"`
 }
 
 // Raw ...
@@ -50,7 +51,7 @@ func ExtractDomain(email string) string {
 
 	p := strings.Split(email, "@")
 
-	if len(p) > 2 {
+	if len(p) > 1 {
 		return p[1]
 	}
 
