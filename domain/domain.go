@@ -36,3 +36,13 @@ func (d Domain) Raw() string {
 
 	return h
 }
+
+// GetDomain ...
+func (d *Domain) GetDomain() string {
+	return d.Raw()
+}
+
+// ExtractDomain ...
+func ExtractDomain(url string) string {
+	return Domain{URL: url}.Raw()
+}

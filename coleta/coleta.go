@@ -1,8 +1,6 @@
 package coleta
 
 import (
-	"net/url"
-	"strings"
 	"sync"
 
 	"git.resultys.com.br/motor/models/domain"
@@ -110,14 +108,14 @@ func (c *Coleta) GetDomains() []domain.Domain {
 	}
 
 	for i := 0; i < len(c.Emails); i++ {
-		url := extractDomainFromEmail(c.Emails[i].Email)
+		url := c.Emails[i].GetDomain()
 		if len(url) > 0 {
 			domains = append(domains, domain.Domain{URL: url})
 		}
 	}
 
 	for i := 0; i < len(c.Sites); i++ {
-		url := extractDomainFromURL(c.Sites[i].URL)
+		url := domain.ExtractDomain(c.Sites[i].URL)
 		if len(url) > 0 {
 			domains = append(domains, domain.Domain{URL: url})
 		}
@@ -125,14 +123,14 @@ func (c *Coleta) GetDomains() []domain.Domain {
 
 	for i := 0; i < len(c.Facebooks); i++ {
 		for j := 0; j < len(c.Facebooks[i].Emails); j++ {
-			url := extractDomainFromEmail(c.Facebooks[i].Emails[j])
+			url := email.ExtractDomain(c.Facebooks[i].Emails[j])
 			if len(url) > 0 {
 				domains = append(domains, domain.Domain{URL: url})
 			}
 		}
 
 		for j := 0; j < len(c.Facebooks[i].Sites); j++ {
-			url := extractDomainFromURL(c.Facebooks[i].Sites[j])
+			url := domain.ExtractDomain(c.Facebooks[i].Sites[j])
 			if len(url) > 0 {
 				domains = append(domains, domain.Domain{URL: url})
 			}
@@ -211,28 +209,4 @@ func popule(mutex *sync.Mutex, arr []interface{}, dados []interface{}) {
 	for i := 0; i < len(dados); i++ {
 		arr = append(arr, dados[i])
 	}
-}
-
-func extractDomainFromURL(URL string) string {
-	u, err := url.Parse(URL)
-
-	if err != nil {
-		return ""
-	}
-
-	return u.Host
-}
-
-func extractDomainFromEmail(e string) string {
-	if !email.IsOwner(e) {
-		return ""
-	}
-
-	p := strings.Split(e, "@")
-
-	if len(p) > 2 {
-		return p[1]
-	}
-
-	return ""
 }

@@ -36,3 +36,23 @@ func IsOwner(email string) bool {
 
 	return b
 }
+
+// GetDomain ...
+func (e *Email) GetDomain() string {
+	return ExtractDomain(e.Email)
+}
+
+// ExtractDomain ...
+func ExtractDomain(email string) string {
+	if !IsOwner(email) {
+		return ""
+	}
+
+	p := strings.Split(email, "@")
+
+	if len(p) > 2 {
+		return p[1]
+	}
+
+	return ""
+}
