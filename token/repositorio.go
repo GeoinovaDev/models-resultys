@@ -35,10 +35,20 @@ func FetchByTokenID(id bson.ObjectId) *Token {
 	return token
 }
 
-// UpdateStatus atualiza o status do token
+// UpdateStatus ...
 func (token *Token) UpdateStatus(status int) {
 	mongo.New().DB("motor").C("token").Query(func(c *mgo.Collection) {
 		err := c.Update(bson.M{"_id": token.TokenID}, bson.M{"$set": bson.M{"status": status}})
+		if err != nil {
+			panic(err)
+		}
+	})
+}
+
+// UpdateEndTime ...
+func (token *Token) UpdateEndTime(time string) {
+	mongo.New().DB("motor").C("token").Query(func(c *mgo.Collection) {
+		err := c.Update(bson.M{"_id": token.TokenID}, bson.M{"$set": bson.M{"diagnostic": bson.M{"endtime": time}}})
 		if err != nil {
 			panic(err)
 		}

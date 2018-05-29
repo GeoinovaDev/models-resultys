@@ -3,6 +3,7 @@ package token
 import (
 	"sync"
 
+	"git.resultys.com.br/lib/lower/time/datetime"
 	"git.resultys.com.br/motor/models/empresa"
 	"git.resultys.com.br/motor/models/telefone"
 	"gopkg.in/mgo.v2/bson"
@@ -13,6 +14,11 @@ const (
 	RUNNING = 1
 	DONE    = 2
 )
+
+type diagnostic struct {
+	StartTime string `json:"starttime" bson:"starttime"`
+	EndTime   string `json:"endtime" bson:"endtime"`
+}
 
 // Token dados
 type Token struct {
@@ -30,6 +36,8 @@ type Token struct {
 	Telefones   []telefone.Telefone `json:"telefones" bson:"telefones"`
 	Domains     []string            `json:"domains" bson:"domains"`
 	Params      map[string]string   `json:"params" bson:"params"`
+	CreateAt    string              `json:"create_at" bson:"create_at"`
+	Diagnostic  *diagnostic         `json:"diagnostic" bson:"diagnostic"`
 
 	mutex *sync.Mutex
 }
@@ -37,7 +45,11 @@ type Token struct {
 // New cria o token
 func New() *Token {
 	return &Token{
-		mutex:  &sync.Mutex{},
+		mutex:    &sync.Mutex{},
+		CreateAt: datetime.Now().String(),
+		Diagnostic: &diagnostic{
+			StartTime: datetime.Now().String(),
+		},
 		Params: map[string]string{},
 	}
 }
