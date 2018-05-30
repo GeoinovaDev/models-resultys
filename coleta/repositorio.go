@@ -36,7 +36,6 @@ func Fetch(id string) (coleta *Coleta) {
 		err := c.Find(bson.M{"id": id}).One(coleta)
 		if err != nil {
 			coleta = nil
-			panic(err)
 		}
 	})
 

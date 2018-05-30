@@ -26,10 +26,7 @@ func FetchByTokenID(id bson.ObjectId) *Token {
 	token := &Token{}
 
 	mongo.New().DB("motor").C("token").Query(func(c *mgo.Collection) {
-		err := c.Find(bson.M{"_id": id}).One(token)
-		if err != nil {
-			panic(err)
-		}
+		c.Find(bson.M{"_id": id}).One(token)
 	})
 
 	return token

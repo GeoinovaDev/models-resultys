@@ -22,10 +22,7 @@ func Fetch() *Snovio {
 	snovio := &Snovio{}
 
 	mongo.New().DB("vendor").C("snovio").Query(func(c *mgo.Collection) {
-		err := c.Find(nil).One(&snovio)
-		if err != nil {
-			panic(err)
-		}
+		c.Find(nil).One(&snovio)
 	})
 
 	return snovio

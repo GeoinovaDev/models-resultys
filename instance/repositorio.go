@@ -23,10 +23,7 @@ func FetchOne(alloc string) Instance {
 	instance := Instance{}
 
 	mongo.New().DB("compute").C("instances").Query(func(c *mgo.Collection) {
-		err := c.Find(bson.M{"alloc": alloc}).One(&instance)
-		if err != nil {
-			panic(err)
-		}
+		c.Find(bson.M{"alloc": alloc}).One(&instance)
 	})
 
 	return instance
@@ -37,10 +34,7 @@ func FetchByAlloc(alloc string) (all []Instance) {
 	all = []Instance{}
 
 	mongo.New().DB("compute").C("instances").Query(func(c *mgo.Collection) {
-		err := c.Find(bson.M{"alloc": alloc}).All(&all)
-		if err != nil {
-			panic(err)
-		}
+		c.Find(bson.M{"alloc": alloc}).All(&all)
 	})
 
 	return
@@ -51,10 +45,7 @@ func FetchAll() []Instance {
 	all := []Instance{}
 
 	mongo.New().DB("compute").C("instances").Query(func(c *mgo.Collection) {
-		err := c.Find(nil).All(&all)
-		if err != nil {
-			panic(err)
-		}
+		c.Find(nil).All(&all)
 	})
 
 	return all
