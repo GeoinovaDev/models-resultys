@@ -21,10 +21,7 @@ func (coleta *Coleta) Insert() *Coleta {
 // Remove ...
 func (coleta *Coleta) Remove() {
 	mongo.New().DB("coletor").C("coleta").Query(func(c *mgo.Collection) {
-		err := c.Remove(bson.M{"id": coleta.ID})
-		if err != nil {
-			panic(err)
-		}
+		c.Remove(bson.M{"id": coleta.ID})
 	})
 }
 
