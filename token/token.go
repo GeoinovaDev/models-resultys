@@ -38,6 +38,8 @@ type Token struct {
 	Params      map[string]string   `json:"params" bson:"params"`
 	CreateAt    string              `json:"create_at" bson:"create_at"`
 	Diagnostic  *diagnostic         `json:"diagnostic" bson:"diagnostic"`
+	Latitude    string              `json:"latitude" bson:"latitude"`
+	Longitude   string              `json:"longitude" bson:"longitude"`
 
 	mutex *sync.Mutex
 }
