@@ -5,7 +5,6 @@ import (
 
 	"git.resultys.com.br/motor/models/domain"
 	"git.resultys.com.br/motor/models/email"
-	emailfonte "git.resultys.com.br/motor/models/email/fonte"
 	"git.resultys.com.br/motor/models/facebook"
 	"git.resultys.com.br/motor/models/gplaces"
 	"git.resultys.com.br/motor/models/linkedin"
@@ -87,14 +86,14 @@ func (c *Coleta) GetEmails() []email.Email {
 		emails = append(emails, *c.Emails[i])
 	}
 
-	for i := 0; i < len(c.Facebooks); i++ {
-		for j := 0; j < len(c.Facebooks[i].Emails); j++ {
-			emails = append(emails, email.Email{
-				Email: c.Facebooks[i].Emails[j],
-				Fonte: emailfonte.FACEBOOK,
-			})
-		}
-	}
+	// for i := 0; i < len(c.Facebooks); i++ {
+	// 	for j := 0; j < len(c.Facebooks[i].Emails); j++ {
+	// 		emails = append(emails, email.Email{
+	// 			Email: c.Facebooks[i].Emails[j],
+	// 			Fonte: emailfonte.FACEBOOK,
+	// 		})
+	// 	}
+	// }
 
 	return emails
 }
