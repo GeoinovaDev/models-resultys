@@ -3,14 +3,12 @@ package coleta
 import (
 	"sync"
 
-	"git.resultys.com.br/motor/models/domain"
 	"git.resultys.com.br/motor/models/email"
 	"git.resultys.com.br/motor/models/facebook"
 	"git.resultys.com.br/motor/models/gplaces"
 	"git.resultys.com.br/motor/models/linkedin"
 	"git.resultys.com.br/motor/models/site"
 	"git.resultys.com.br/motor/models/telefone"
-	telefonefonte "git.resultys.com.br/motor/models/telefone/fonte"
 	"git.resultys.com.br/motor/models/twitter"
 )
 
@@ -53,90 +51,6 @@ func New() *Coleta {
 		twitterMutex:  &sync.Mutex{},
 		siteMutex:     &sync.Mutex{},
 	}
-}
-
-// GetTelefones ...
-func (c *Coleta) GetTelefones() []telefone.Telefone {
-	telefones := []telefone.Telefone{}
-
-	for i := 0; i < len(c.Telefones); i++ {
-		telefones = append(telefones, *c.Telefones[i])
-	}
-
-	for i := 0; i < len(c.Facebooks); i++ {
-		for j := 0; j < len(c.Facebooks[i].Telefones); j++ {
-			tel := telefone.New(c.Facebooks[i].Telefones[j])
-			tel.Fonte = telefonefonte.FACEBOOK
-			telefones = append(telefones, tel)
-		}
-	}
-
-	if len(c.GPlaces.GlobalPhoneNumber) > 0 {
-		telefones = append(telefones, telefone.New(c.GPlaces.GlobalPhoneNumber))
-	}
-
-	return telefones
-}
-
-// GetEmails ...
-func (c *Coleta) GetEmails() []email.Email {
-	emails := []email.Email{}
-
-	for i := 0; i < len(c.Emails); i++ {
-		emails = append(emails, *c.Emails[i])
-	}
-
-	// for i := 0; i < len(c.Facebooks); i++ {
-	// 	for j := 0; j < len(c.Facebooks[i].Emails); j++ {
-	// 		emails = append(emails, email.Email{
-	// 			Email: c.Facebooks[i].Emails[j],
-	// 			Fonte: emailfonte.FACEBOOK,
-	// 		})
-	// 	}
-	// }
-
-	return emails
-}
-
-// GetDomains ...
-func (c *Coleta) GetDomains() []domain.Domain {
-	domains := []domain.Domain{}
-
-	if len(c.GPlaces.Website) > 0 {
-		domains = append(domains, domain.Domain{URL: c.GPlaces.Website})
-	}
-
-	for i := 0; i < len(c.Emails); i++ {
-		url := c.Emails[i].GetDomain()
-		if len(url) > 0 {
-			domains = append(domains, domain.Domain{URL: url})
-		}
-	}
-
-	for i := 0; i < len(c.Sites); i++ {
-		url := domain.ExtractDomain(c.Sites[i].URL)
-		if len(url) > 0 {
-			domains = append(domains, domain.Domain{URL: url})
-		}
-	}
-
-	for i := 0; i < len(c.Facebooks); i++ {
-		for j := 0; j < len(c.Facebooks[i].Emails); j++ {
-			url := email.ExtractDomain(c.Facebooks[i].Emails[j])
-			if len(url) > 0 {
-				domains = append(domains, domain.Domain{URL: url})
-			}
-		}
-
-		for j := 0; j < len(c.Facebooks[i].Sites); j++ {
-			url := domain.ExtractDomain(c.Facebooks[i].Sites[j])
-			if len(url) > 0 {
-				domains = append(domains, domain.Domain{URL: url})
-			}
-		}
-	}
-
-	return domains
 }
 
 // PopuleFacebook facebook
