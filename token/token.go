@@ -40,6 +40,7 @@ type Token struct {
 	Diagnostic  *diagnostic         `json:"diagnostic" bson:"diagnostic"`
 	Latitude    string              `json:"latitude" bson:"latitude"`
 	Longitude   string              `json:"longitude" bson:"longitude"`
+	Fonte       string              `json:"fonte" bson:"fonte"`
 
 	mutex *sync.Mutex
 }
