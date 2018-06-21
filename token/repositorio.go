@@ -3,6 +3,7 @@ package token
 import (
 	"gopkg.in/mgo.v2/bson"
 
+	"git.resultys.com.br/lib/lower/time/datetime"
 	"git.resultys.com.br/lib/lower/db/mongo"
 	"gopkg.in/mgo.v2"
 )
@@ -11,6 +12,8 @@ import (
 func (token *Token) Insert() *Token {
 	mongo.New().DB("motor").C("token").Query(func(c *mgo.Collection) {
 		token.TokenID = bson.NewObjectId()
+		token.CreateAt = datetime.Now().String()
+
 		err := c.Insert(token)
 		if err != nil {
 			panic(err)
