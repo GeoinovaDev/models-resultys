@@ -2,6 +2,8 @@ package registrobr
 
 // Document ...
 type Document struct {
+	EmpresaID    int
+	CNPJ         string
 	Domains      []string `json:"domains"`
 	Telefone     string   `json:"telefone"`
 	ContatoID    string   `json:"contato_id"`
