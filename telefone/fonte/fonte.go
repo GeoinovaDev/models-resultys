@@ -1,6 +1,6 @@
 package fonte
 
-// RECEITAWS
+// FONTE
 const (
 	RECEITAWS = 0
 	APONTADOR = 1
@@ -11,4 +11,6 @@ const (
 	FACEBOOK = 5
 	LINKEDIN = 6
 	TWITTER  = 7
+
+	REGISTROBR = 8
 )

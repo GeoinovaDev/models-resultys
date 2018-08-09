@@ -68,6 +68,7 @@ func (telefone Telefone) RawSemDDI() string {
 // Return Telefone
 func New(numero string) Telefone {
 	telefone := Telefone{}
+	telefone.Tipo = tipo.UNKNOWN
 
 	numero = Clear(numero)
 

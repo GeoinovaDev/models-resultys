@@ -6,4 +6,5 @@ const (
 	CELULAR  = 1
 	LOCAL    = 2
 	GRATUITO = 3
+	UNKNOWN  = 4
 )
