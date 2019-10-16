@@ -19,36 +19,29 @@ func (e Email) Raw() string {
 	return e.Email
 }
 
-// IsOwner checa se o email eh de dominio privado
-func IsOwner(email string) bool {
-	b := true
-	arr := []string{
-		"globo", "gmail", "hotmail", "ig.com", "ibest", "oi.com", "live",
-		"yahoo", "bol", "uol", "msn", "r7.com", "aol", "brturbo", "outlook", "terra",
-		"hotamail", "hotail", "gamil", "outlok", "htmail", "ymail", "hotmaiul", "yhaoo",
-	}
-
-	for i := 0; i < len(arr); i++ {
-		if strings.Index(email, arr[i]) > -1 {
-			b = false
-			break
-		}
-	}
-
-	return b
-}
-
 // GetDomain ...
 func (e *Email) GetDomain() string {
 	return ExtractDomain(e.Email)
 }
 
-// ExtractDomain ...
-func ExtractDomain(email string) string {
-	if !IsOwner(email) {
-		return ""
+// GetName ...
+func (e *Email) GetName() string {
+	return ExtractName(e.Email)
+}
+
+// ExtractName ...
+func ExtractName(email string) string {
+	p := strings.Split(email, "@")
+
+	if len(p) > 1 {
+		return p[0]
 	}
 
+	return ""
+}
+
+// ExtractDomain ...
+func ExtractDomain(email string) string {
 	p := strings.Split(email, "@")
 
 	if len(p) > 1 {
