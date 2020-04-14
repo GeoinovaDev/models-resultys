@@ -8,4 +8,5 @@ type Luminati struct {
 	User     string        `json:"user" bson:"user"`
 	Password string        `json:"password" bson:"password"`
 	Host     string        `json:"host" bson:"host"`
+	Port     string        `json:"port" bson:"port"`
 }
