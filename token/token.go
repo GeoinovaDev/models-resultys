@@ -40,7 +40,7 @@ type Token struct {
 	Diagnostic  *diagnostic         `json:"diagnostic" bson:"diagnostic"`
 	Latitude    string              `json:"latitude" bson:"latitude"`
 	Longitude   string              `json:"longitude" bson:"longitude"`
-	Worker       string             `json:"worker" bson:"worker"`
+	Worker      string              `json:"worker" bson:"worker"`
 
 	mutex *sync.Mutex
 }
@@ -48,6 +48,7 @@ type Token struct {
 // New cria o token
 func New() *Token {
 	return &Token{
+		TokenID:  bson.NewObjectId(),
 		mutex:    &sync.Mutex{},
 		CreateAt: datetime.Now().String(),
 		Diagnostic: &diagnostic{
@@ -86,4 +87,8 @@ func (e *Token) Unlock() {
 // Return string
 func (e *Token) GetNome() string {
 	return empresa.GetNome(e.RazaoSocial, e.Fantasia)
+}
+
+func newUUID() string {
+	return ""
 }
