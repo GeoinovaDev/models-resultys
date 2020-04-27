@@ -58,15 +58,23 @@ func New() *Token {
 	}
 }
 
+// RenewID ...
+func (t *Token) RenewID() *Token {
+	t.TokenID = bson.NewObjectId()
+
+	return t
+}
+
 // AddParam ...
-func (e *Token) AddParam(param string, value string) *Token {
-	e.Params[param] = value
-	return e
+func (t *Token) AddParam(param string, value string) *Token {
+	t.Params[param] = value
+
+	return t
 }
 
 // GetParam ...
-func (e *Token) GetParam(param string) string {
-	if val, ok := e.Params[param]; ok {
+func (t *Token) GetParam(param string) string {
+	if val, ok := t.Params[param]; ok {
 		return val
 	}
 
@@ -74,21 +82,17 @@ func (e *Token) GetParam(param string) string {
 }
 
 // Lock trava o token
-func (e *Token) Lock() {
-	e.mutex.Lock()
+func (t *Token) Lock() {
+	t.mutex.Lock()
 }
 
 // Unlock destrava o token
-func (e *Token) Unlock() {
-	e.mutex.Unlock()
+func (t *Token) Unlock() {
+	t.mutex.Unlock()
 }
 
 // GetNome retorna nome da empresa
 // Return string
-func (e *Token) GetNome() string {
-	return empresa.GetNome(e.RazaoSocial, e.Fantasia)
-}
-
-func newUUID() string {
-	return ""
+func (t *Token) GetNome() string {
+	return empresa.GetNome(t.RazaoSocial, t.Fantasia)
 }
