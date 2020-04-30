@@ -31,6 +31,7 @@ type Token struct {
 	Estado      string              `json:"estado" bson:"estado"`
 	CEP         string              `json:"cep" bson:"cep"`
 	Webhook     string              `json:"webhook" bson:"webhook"`
+	WebhookID   string              `json:"webhook_id" bson:"webhook_id"`
 	Status      int                 `json:"status" bson:"status"`
 	Trigger     bool                `json:"trigger" bson:"trigger"`
 	Telefones   []telefone.Telefone `json:"telefones" bson:"telefones"`
@@ -56,13 +57,6 @@ func New() *Token {
 		},
 		Params: map[string]string{},
 	}
-}
-
-// RenewID ...
-func (t *Token) RenewID() *Token {
-	t.TokenID = bson.NewObjectId()
-
-	return t
 }
 
 // AddParam ...
