@@ -1,5 +1,7 @@
 package empresa
 
+import "strings"
+
 // Basic struct
 type Basic struct {
 	RazaoSocial string
@@ -9,5 +11,20 @@ type Basic struct {
 
 // GetNome ...
 func (basic *Basic) GetNome() string {
-	return GetNome(basic.RazaoSocial, basic.Fantasia)
+	nome := ""
+
+	if len(basic.Fantasia) == 0 {
+		if len(basic.RazaoSocial) > 0 {
+			partes := strings.Split(basic.RazaoSocial, " ")
+			if len(partes) >= 2 {
+				nome = partes[0] + " " + partes[1]
+			} else {
+				nome = partes[0]
+			}
+		}
+	} else {
+		nome = basic.Fantasia
+	}
+
+	return nome
 }
