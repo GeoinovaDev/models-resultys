@@ -10,9 +10,9 @@ func (p Params) ToMap() map[string]string {
 	m := map[string]string{}
 
 	if p.IsLoadFromCache {
-		m["is_load_cache"] = "true"
+		m["cache"] = "true"
 	} else {
-		m["is_load_cache"] = "false"
+		m["cache"] = "false"
 	}
 
 	return m
