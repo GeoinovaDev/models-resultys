@@ -6,6 +6,7 @@ import (
 
 // Email dados
 type Email struct {
+	Nome     string `json:"nome" bson:"nome"`
 	Email    string `json:"email" bson:"email"`
 	CreateAt string `json:"create_at" bson:"create_at"`
 	Status   string `json:"status" bson:"status"`
