@@ -5,9 +5,8 @@ import (
 
 	"git.resultys.com.br/motor/models/email"
 	"git.resultys.com.br/motor/models/facebook"
-	"git.resultys.com.br/motor/models/gplaces"
+	"git.resultys.com.br/motor/models/gmaps"
 	"git.resultys.com.br/motor/models/linkedin"
-	"git.resultys.com.br/motor/models/registrobr"
 	"git.resultys.com.br/motor/models/site"
 	"git.resultys.com.br/motor/models/telefone"
 	"git.resultys.com.br/motor/models/twitter"
@@ -21,11 +20,11 @@ type Coleta struct {
 	Telefones []*telefone.Telefone `json:"telefones" bson:"telefones"`
 	Sites     []*site.Site         `json:"sites" bson:"sites"`
 
-	Facebooks  []*facebook.Page     `json:"facebooks" bson:"facebooks"`
-	Linkedins  []*linkedin.Linkedin `json:"linkedins" bson:"linkedins"`
-	Twitters   []*twitter.Twitter   `json:"twitters" bson:"twitters"`
-	GPlaces    *gplaces.Company     `json:"gplaces" bson:"gplaces"`
-	RegistroBR *registrobr.Document `json:"registrobr" bson:"registrobr"`
+	Facebooks []*facebook.Page     `json:"facebooks" bson:"facebooks"`
+	Linkedins []*linkedin.Linkedin `json:"linkedins" bson:"linkedins"`
+	Twitters  []*twitter.Twitter   `json:"twitters" bson:"twitters"`
+
+	CompanyGMaps gmaps.Company
 
 	emailMutex    *sync.Mutex
 	telefoneMutex *sync.Mutex
@@ -38,14 +37,12 @@ type Coleta struct {
 // New ...
 func New() *Coleta {
 	return &Coleta{
-		Emails:     []*email.Email{},
-		Telefones:  []*telefone.Telefone{},
-		Sites:      []*site.Site{},
-		Facebooks:  []*facebook.Page{},
-		Linkedins:  []*linkedin.Linkedin{},
-		Twitters:   []*twitter.Twitter{},
-		GPlaces:    &gplaces.Company{},
-		RegistroBR: &registrobr.Document{},
+		Emails:    []*email.Email{},
+		Telefones: []*telefone.Telefone{},
+		Sites:     []*site.Site{},
+		Facebooks: []*facebook.Page{},
+		Linkedins: []*linkedin.Linkedin{},
+		Twitters:  []*twitter.Twitter{},
 
 		emailMutex:    &sync.Mutex{},
 		telefoneMutex: &sync.Mutex{},
