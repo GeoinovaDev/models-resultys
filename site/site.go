@@ -4,4 +4,5 @@ package site
 type Site struct {
 	URL    string
 	Status string
+	Fonte  string
 }
