@@ -6,15 +6,15 @@ import (
 )
 
 // Save ...
-func (Company *Company) Save() *Company {
+func (c *Company) Save() *Company {
 	mongo.New().DB("exact").C("company").Query(func(c *mgo.Collection) {
-		err := c.Insert(Company)
+		err := c.Insert(c)
 		if err != nil {
 			panic(err)
 		}
 	})
 
-	return Company
+	return c
 }
 
 // Load ...
