@@ -3,18 +3,20 @@ package company
 import (
 	"git.resultys.com.br/lib/lower/db/mongo"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 // Save ...
-func (c *Company) Save() *Company {
+func (company *Company) Save() *Company {
 	mongo.New().DB("exact").C("company").Query(func(c *mgo.Collection) {
-		err := c.Insert(c)
+		c.Remove(bson.M{"cnpj": company.CNPJ})
+		err := c.Insert(company)
 		if err != nil {
 			panic(err)
 		}
 	})
 
-	return c
+	return company
 }
 
 // Load ...
