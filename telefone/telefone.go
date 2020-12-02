@@ -129,6 +129,10 @@ func New(numero string) Telefone {
 		telefone.DDD = numero[2:4]
 		telefone.Numero = numero[4:]
 
+		if numero[4:][0:1] == "8" || numero[4:][0:1] == "9" {
+			telefone.Numero = "9" + telefone.Numero
+		}
+
 		return telefone
 	}
 

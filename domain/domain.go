@@ -13,6 +13,13 @@ type Domain struct {
 	Status  string `json:"status" bson:"status"`
 }
 
+// New ...
+func New(url string) *Domain {
+	return &Domain{
+		URL: url,
+	}
+}
+
 // Raw ...
 func (d Domain) Raw() string {
 	u := d.URL

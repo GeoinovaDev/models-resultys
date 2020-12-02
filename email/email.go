@@ -15,6 +15,11 @@ type Email struct {
 	Repeat   int    `json:"repeat" bson:"repeat"`
 }
 
+// New ...
+func New(email string) *Email {
+	return &Email{Email: email}
+}
+
 // Raw ...
 func (e Email) Raw() string {
 	return e.Email
