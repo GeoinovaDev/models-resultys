@@ -3,9 +3,9 @@ package empresa
 import (
 	"strings"
 
-	"git.resultys.com.br/motor/models/email"
-	"git.resultys.com.br/motor/models/socio"
-	"git.resultys.com.br/motor/models/telefone"
+	"github.com/GeoinovaDev/models-resultys/email"
+	"github.com/GeoinovaDev/models-resultys/socio"
+	"github.com/GeoinovaDev/models-resultys/telefone"
 )
 
 // Empresa dados

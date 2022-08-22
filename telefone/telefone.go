@@ -3,8 +3,8 @@ package telefone
 import (
 	"strings"
 
-	"git.resultys.com.br/lib/lower/str"
-	"git.resultys.com.br/motor/models/telefone/tipo"
+	"github.com/GeoinovaDev/lower-resultys/str"
+	"github.com/GeoinovaDev/models-resultys/telefone/tipo"
 )
 
 // Telefone dados

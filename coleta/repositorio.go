@@ -1,7 +1,7 @@
 package coleta
 
 import (
-	"git.resultys.com.br/lib/lower/db/mongo"
+	"github.com/GeoinovaDev/lower-resultys/db/mongo"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

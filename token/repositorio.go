@@ -3,8 +3,8 @@ package token
 import (
 	"gopkg.in/mgo.v2/bson"
 
-	"git.resultys.com.br/lib/lower/db/mongo"
-	"git.resultys.com.br/lib/lower/time/datetime"
+	"github.com/GeoinovaDev/lower-resultys/db/mongo"
+	"github.com/GeoinovaDev/lower-resultys/time/datetime"
 	"gopkg.in/mgo.v2"
 )
 

@@ -1,7 +1,7 @@
 package classify
 
 import (
-	"git.resultys.com.br/motor/models/empresa"
+	"github.com/GeoinovaDev/models-resultys/empresa"
 	"gopkg.in/mgo.v2/bson"
 )
 

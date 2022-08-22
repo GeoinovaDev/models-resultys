@@ -1,7 +1,7 @@
 package snovio
 
 import (
-	"git.resultys.com.br/lib/lower/db/mongo"
+	"github.com/GeoinovaDev/lower-resultys/db/mongo"
 	mgo "gopkg.in/mgo.v2"
 )
 

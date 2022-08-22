@@ -3,13 +3,13 @@ package coleta
 import (
 	"sync"
 
-	"git.resultys.com.br/motor/models/email"
-	"git.resultys.com.br/motor/models/facebook"
-	"git.resultys.com.br/motor/models/gmaps"
-	"git.resultys.com.br/motor/models/linkedin"
-	"git.resultys.com.br/motor/models/site"
-	"git.resultys.com.br/motor/models/telefone"
-	"git.resultys.com.br/motor/models/twitter"
+	"github.com/GeoinovaDev/models-resultys/email"
+	"github.com/GeoinovaDev/models-resultys/facebook"
+	"github.com/GeoinovaDev/models-resultys/gmaps"
+	"github.com/GeoinovaDev/models-resultys/linkedin"
+	"github.com/GeoinovaDev/models-resultys/site"
+	"github.com/GeoinovaDev/models-resultys/telefone"
+	"github.com/GeoinovaDev/models-resultys/twitter"
 )
 
 // Coleta dados

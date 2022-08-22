@@ -3,9 +3,9 @@ package token
 import (
 	"sync"
 
-	"git.resultys.com.br/lib/lower/time/datetime"
-	"git.resultys.com.br/motor/models/empresa"
-	"git.resultys.com.br/motor/models/telefone"
+	"github.com/GeoinovaDev/lower-resultys/time/datetime"
+	"github.com/GeoinovaDev/models-resultys/empresa"
+	"github.com/GeoinovaDev/models-resultys/telefone"
 	"gopkg.in/mgo.v2/bson"
 )
 
