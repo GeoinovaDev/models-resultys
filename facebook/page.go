@@ -1,5 +1,7 @@
 package facebook
 
+import "github.com/GeoinovaDev/models-resultys/telefone"
+
 // Page struct
 type Page struct {
 	Nome     string `json:"nome"`
@@ -46,7 +48,7 @@ func (page *Page) PopuleFromMap(m map[string]interface{}) {
 	}
 
 	for i := 0; i < len(telefones); i++ {
-		page.Telefones = append(page.Telefones, telefones[i].(string))
+		page.Telefones = append(page.Telefones, telefone.New(telefones[i].(string)).Format())
 	}
 
 	for i := 0; i < len(emails); i++ {
