@@ -177,6 +177,10 @@ func Clear(numero string) string {
 	numero = strings.Replace(numero, "+", "", -1)
 	numero = strings.Replace(numero, " ", "", -1)
 
+	if len(numero) > 1 && numero[0] == '0' && numero[1] != '8' {
+		numero = numero[1:]
+	}
+
 	return strings.Trim(numero, " ")
 }
 
